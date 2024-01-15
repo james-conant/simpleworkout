@@ -36,6 +36,11 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("/users/username/{name}")
+    public User findByUserName(@PathVariable("name") String name) {
+        return userService.findByUserName(name);
+    }
+
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
 

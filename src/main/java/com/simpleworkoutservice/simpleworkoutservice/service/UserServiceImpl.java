@@ -1,48 +1,59 @@
 package com.simpleworkoutservice.simpleworkoutservice.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.simpleworkoutservice.simpleworkoutservice.dao.UserDao;
+import com.simpleworkoutservice.simpleworkoutservice.dao.UserRepository;
 import com.simpleworkoutservice.simpleworkoutservice.entity.User;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-	
-
-	private UserDao userDao;
+	private UserRepository userRepo;
 
 	@Autowired
-	public UserServiceImpl(UserDao userDao) {
-		this.userDao = userDao;
+	public UserServiceImpl(UserRepository userRepo) {
+		this.userRepo = userRepo;
 	}
 
 	@Override
 	public User findByUserName(String userName) {
-		return userDao.findByUserName(userName);
+		return userRepo.findByUserName(userName);
 	}
 
 	@Override
 	public List<User> findAll() {
-		return userDao.findAll();
+		return userRepo.findAll();
 	}
 
 	@Override
 	public User findById(int id) {
-		return userDao.findById(id);
+
+		Optional<User> result = userRepo.findById(id);
+
+		User theEmployee = null;
+
+		if (result.isPresent()) {
+			theEmployee = result.get();
+		} else {
+			// we didn't find the employee
+			throw new RuntimeException("Did not find employee id - " + id);
+		}
+
+		return theEmployee;
 	}
 
 	@Override
 	public User save(User user) {
-		return userDao.save(user);
+		return userRepo.save(user);
 	}
 
 	@Override
 	public void deleteById(int userId) {
-		userDao.deleteById(userId);
+		userRepo.deleteById(userId);
 	}
 
 }
