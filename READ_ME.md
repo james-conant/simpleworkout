@@ -1,1 +1,2 @@
-Make a an endpoint to get react native to hit
+Work on other services
+Look into making a "Repository" for Users (refer to example app)

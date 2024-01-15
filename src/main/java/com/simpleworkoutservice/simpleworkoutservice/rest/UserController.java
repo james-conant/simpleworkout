@@ -54,12 +54,9 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{userId}")
-    public String deleteUser(@PathVariable int userId) {
+    public String deleteUser(@PathVariable("userId") int userId) {
 
         User dbUser = userService.findById(userId);
-
-        // throw exception if null
-
         if (dbUser == null) {
             throw new RuntimeException("User id not found - " + userId);
         }
