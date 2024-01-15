@@ -1,0 +1,30 @@
+CREATE TABLE Users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE Workouts (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE Exercises (
+    id SERIAL PRIMARY KEY,
+    workout_id INTEGER NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    FOREIGN KEY (workout_id) REFERENCES Workouts (id) ON DELETE CASCADE
+);
+
+CREATE TABLE Sets (
+    id SERIAL PRIMARY KEY,
+    exercise_id INTEGER NOT NULL,
+    weight INTEGER NOT NULL,
+    reps INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (exercise_id) REFERENCES Exercises (id) ON DELETE CASCADE
+);
