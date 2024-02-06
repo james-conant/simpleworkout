@@ -1,4 +1,4 @@
-package com.simpleworkoutservice.simpleworkoutservice.service;
+package com.simpleworkoutservice.simpleworkoutservice.service.SetService;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.simpleworkoutservice.simpleworkoutservice.dao.SetRepository;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Set;
+import com.simpleworkoutservice.simpleworkoutservice.service.BaseService;
 
 @Service
 public class SetServiceImpl implements BaseService<Set, Integer> {

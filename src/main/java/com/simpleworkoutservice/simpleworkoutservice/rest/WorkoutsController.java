@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
 import com.simpleworkoutservice.simpleworkoutservice.entity.User;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Workout;
-import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService;
-import com.simpleworkoutservice.simpleworkoutservice.service.UserService;
-import com.simpleworkoutservice.simpleworkoutservice.service.WorkoutService;
+import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService.ExerciseService;
+import com.simpleworkoutservice.simpleworkoutservice.service.UserService.UserService;
+import com.simpleworkoutservice.simpleworkoutservice.service.WorkoutService.WorkoutService;
 
 import java.util.List;
 

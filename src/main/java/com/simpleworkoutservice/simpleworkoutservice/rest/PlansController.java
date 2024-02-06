@@ -3,7 +3,8 @@ package com.simpleworkoutservice.simpleworkoutservice.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Plan;
-import com.simpleworkoutservice.simpleworkoutservice.service.PlanService;
+import com.simpleworkoutservice.simpleworkoutservice.service.PlanService.PlanService;
+
 import java.util.List;
 
 @RestController

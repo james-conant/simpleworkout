@@ -3,7 +3,7 @@ package com.simpleworkoutservice.simpleworkoutservice.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Week;
-import com.simpleworkoutservice.simpleworkoutservice.service.WeekService;
+import com.simpleworkoutservice.simpleworkoutservice.service.WeekService.WeekService;
 
 import java.util.List;
 

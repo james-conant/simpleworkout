@@ -2,13 +2,9 @@ package com.simpleworkoutservice.simpleworkoutservice.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
 import com.simpleworkoutservice.simpleworkoutservice.entity.User;
-import com.simpleworkoutservice.simpleworkoutservice.entity.Workout;
-import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService;
-import com.simpleworkoutservice.simpleworkoutservice.service.UserService;
-import com.simpleworkoutservice.simpleworkoutservice.service.WorkoutService;
+import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService.ExerciseService;
+import com.simpleworkoutservice.simpleworkoutservice.service.UserService.UserService;
 
 import java.util.List;
 
@@ -17,14 +13,12 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
-    private WorkoutService workoutService;
     ExerciseService exerciseService;
 
     @Autowired
-    public UserController(UserService userService, WorkoutService workoutService,
+    public UserController(UserService userService,
             ExerciseService exerciseService) {
         this.userService = userService;
-        this.workoutService = workoutService;
         this.exerciseService = exerciseService;
 
     }

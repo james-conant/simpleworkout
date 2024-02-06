@@ -3,7 +3,7 @@ package com.simpleworkoutservice.simpleworkoutservice.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
-import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService;
+import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService.ExerciseService;
 
 import java.util.List;
 

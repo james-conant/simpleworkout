@@ -1,7 +1,8 @@
-package com.simpleworkoutservice.simpleworkoutservice.service;
+package com.simpleworkoutservice.simpleworkoutservice.service.WeekService;
 
 import java.util.List;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Week;
+import com.simpleworkoutservice.simpleworkoutservice.service.BaseService;
 
 public interface WeekService extends BaseService<Week, Integer> {
 

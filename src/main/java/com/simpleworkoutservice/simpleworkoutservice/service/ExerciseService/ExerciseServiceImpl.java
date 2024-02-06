@@ -1,4 +1,4 @@
-package com.simpleworkoutservice.simpleworkoutservice.service;
+package com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService;
 
 import java.util.List;
 import java.util.Optional;
