@@ -10,27 +10,30 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Exercises")
-public class Exercise {
+@Table(name = "weeks")
+public class Week extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "workout_id", referencedColumnName = "id")
-    private Workout workout;
-
     @Column(name = "name")
     private String name;
 
-    public Exercise() {
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "plan_id", referencedColumnName = "id")
+    private Plan plan;
+
+    public Week() {
     }
 
-    public Exercise(int id, Workout workout, String name) {
+    public Week(int id, String name) {
         this.id = id;
-        this.workout = workout;
         this.name = name;
     }
 
@@ -42,14 +45,6 @@ public class Exercise {
         this.id = id;
     }
 
-    public Workout getWorkout() {
-        return this.workout;
-    }
-
-    public void setWorkout(Workout workout) {
-        this.workout = workout;
-    }
-
     public String getName() {
         return this.name;
     }
@@ -58,11 +53,18 @@ public class Exercise {
         this.name = name;
     }
 
+    public Plan getPlan() {
+        return this.plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
     @Override
     public String toString() {
         return "{" +
                 " id='" + getId() + "'" +
-                ", workout='" + getWorkout() + "'" +
                 ", name='" + getName() + "'" +
                 "}";
     }

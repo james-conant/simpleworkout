@@ -2,15 +2,13 @@ package com.simpleworkoutservice.simpleworkoutservice.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.simpleworkoutservice.simpleworkoutservice.dao.ExerciseRepository;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
 
 @Service
-public class ExerciseServiceImpl implements BaseService<Exercise, Integer> {
+public class ExerciseServiceImpl implements ExerciseService {
 
     private ExerciseRepository exerciseRepo;
 
@@ -35,7 +33,7 @@ public class ExerciseServiceImpl implements BaseService<Exercise, Integer> {
             dbExercise = result.get();
         } else {
             // we didn't find the employee
-            throw new RuntimeException("Did not find employee id - " + id);
+            throw new RuntimeException("Did not find exercise id - " + id);
         }
 
         return dbExercise;
@@ -49,6 +47,12 @@ public class ExerciseServiceImpl implements BaseService<Exercise, Integer> {
     @Override
     public void deleteById(int exerciseId) {
         exerciseRepo.deleteById(exerciseId);
+    }
+
+    @Override
+    public List<Exercise> findAllByWorkoutId(int id) {
+        return exerciseRepo.findAllByWorkoutId(id);
+
     }
 
 }

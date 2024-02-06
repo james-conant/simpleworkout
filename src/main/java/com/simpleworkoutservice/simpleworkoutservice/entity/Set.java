@@ -1,12 +1,16 @@
 package com.simpleworkoutservice.simpleworkoutservice.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "sets")
 public class Set extends AuditableEntity {
 
     @Id
@@ -14,7 +18,7 @@ public class Set extends AuditableEntity {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "exercise_id", referencedColumnName = "id")
     private Workout workout;
 

@@ -10,61 +10,61 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Exercises")
-public class Exercise {
+@Table(name = "plans")
+public class Plan extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "workout_id", referencedColumnName = "id")
-    private Workout workout;
-
     @Column(name = "name")
     private String name;
 
-    public Exercise() {
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    public Plan() {
     }
 
-    public Exercise(int id, Workout workout, String name) {
+    public Plan(int id, User user, String name) {
         this.id = id;
-        this.workout = workout;
+        this.user = user;
         this.name = name;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public Workout getWorkout() {
-        return this.workout;
-    }
-
-    public void setWorkout(Workout workout) {
-        this.workout = workout;
-    }
-
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                " id='" + getId() + "'" +
-                ", workout='" + getWorkout() + "'" +
-                ", name='" + getName() + "'" +
-                "}";
+    public User getUser() {
+        return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "id=" + id +
+                ", user=" + user +
+                ", name='" + name + '\'' +
+                ", createdAt=" + getCreatedAt() +
+                '}';
+    }
 }

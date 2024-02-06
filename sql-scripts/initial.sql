@@ -8,9 +8,11 @@ CREATE TABLE Users (
 CREATE TABLE Workouts (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
+    week_id INTEGER NOT NULL,
     name VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE
+    FOREIGN KEY (week_id) REFERENCES Weeks (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Exercises (
@@ -27,4 +29,11 @@ CREATE TABLE Sets (
     reps INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (exercise_id) REFERENCES Exercises (id) ON DELETE CASCADE
+);
+
+CREATE TABLE Weeks (
+    id SERIAL PRIMARY KEY,
+    workout_id INTEGER NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
 );

@@ -10,7 +10,7 @@ import com.simpleworkoutservice.simpleworkoutservice.dao.WorkoutRepository;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Workout;
 
 @Service
-public class WorkoutServiceImpl implements BaseService<Workout, Integer> {
+public class WorkoutServiceImpl implements WorkoutService {
 
     private WorkoutRepository workoutRepo;
 
@@ -49,6 +49,11 @@ public class WorkoutServiceImpl implements BaseService<Workout, Integer> {
     @Override
     public void deleteById(int userId) {
         workoutRepo.deleteById(userId);
+    }
+
+    @Override
+    public List<Workout> findAllByWeekId(int weekId) {
+        return workoutRepo.findAllByWeekId(weekId);
     }
 
 }

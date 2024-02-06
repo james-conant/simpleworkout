@@ -7,9 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-// @Table(name = "workouts")
+@Table(name = "workouts")
 public class Workout extends AuditableEntity {
 
     @Id
@@ -24,13 +25,15 @@ public class Workout extends AuditableEntity {
     @Column(name = "name")
     private String name;
 
-    // @Column(name = "created_by")
-    // private int createdBy;
+    @ManyToOne
+    @JoinColumn(name = "week_id", referencedColumnName = "id")
+    private Week week;
 
     public Workout() {
     }
 
-    public Workout(User user, String name) {
+    public Workout(int id, User user, String name) {
+        this.id = id;
         this.user = user;
         this.name = name;
     }
@@ -57,6 +60,14 @@ public class Workout extends AuditableEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Week getWeek() {
+        return week;
+    }
+
+    public void setWeek(Week week) {
+        this.week = week;
     }
 
     @Override
