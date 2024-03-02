@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByUserName(String userName) {
-		return userRepo.findByUserName(userName);
+	public User findByUsername(String username) {
+		return userRepo.findByUsername(username);
 	}
 
 	@Override
@@ -48,6 +48,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(User user) {
+		if (user.getAuthId() == null) {
+			throw new IllegalArgumentException("no authId from action");
+		}
+		Optional<User> existingUser = userRepo.findByAuthId(user.getAuthId());
+
+		if (existingUser.isPresent()) {
+			System.out.println("A user with the same authId already exists");
+			return null;
+		}
+
 		return userRepo.save(user);
 	}
 

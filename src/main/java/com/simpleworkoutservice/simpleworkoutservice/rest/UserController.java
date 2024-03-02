@@ -1,6 +1,9 @@
 package com.simpleworkoutservice.simpleworkoutservice.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.User;
 import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService.ExerciseService;
@@ -41,15 +44,12 @@ public class UserController {
     }
 
     @GetMapping("/users/username/{name}")
-    public User findByUserName(@PathVariable("name") String name) {
-        return userService.findByUserName(name);
+    public User findByUsername(@PathVariable("name") String name) {
+        return userService.findByUsername(name);
     }
 
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
-
-        user.setId(0);
-
         User dbUser = userService.save(user);
         return dbUser;
     }

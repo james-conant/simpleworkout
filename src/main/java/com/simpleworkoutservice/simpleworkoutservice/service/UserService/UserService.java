@@ -5,6 +5,6 @@ import com.simpleworkoutservice.simpleworkoutservice.service.BaseService;
 
 public interface UserService extends BaseService<User, Integer> {
 
-    public User findByUserName(String userName);
+    public User findByUsername(String username);
 
 }
