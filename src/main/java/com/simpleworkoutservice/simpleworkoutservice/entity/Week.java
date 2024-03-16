@@ -26,8 +26,8 @@ public class Week extends AuditableEntity {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "plan_id", referencedColumnName = "id")
-    private Plan plan;
+    @JoinColumn(name = "program_id", referencedColumnName = "id")
+    private Program program;
 
     public Week() {
     }
@@ -53,12 +53,12 @@ public class Week extends AuditableEntity {
         this.name = name;
     }
 
-    public Plan getPlan() {
-        return this.plan;
+    public Program getProgram() {
+        return this.program;
     }
 
-    public void setPlan(Plan plan) {
-        this.plan = plan;
+    public void setProgram(Program program) {
+        this.program = program;
     }
 
     @Override

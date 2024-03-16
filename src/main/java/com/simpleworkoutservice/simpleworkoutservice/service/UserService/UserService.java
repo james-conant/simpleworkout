@@ -7,4 +7,6 @@ public interface UserService extends BaseService<User, Integer> {
 
     public User findByUsername(String username);
 
+    public User findByAuthId(String authId);
+
 }

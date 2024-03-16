@@ -8,6 +8,6 @@ public interface WeekService extends BaseService<Week, Integer> {
 
     public List<Week> findAllByUserId(int id);
 
-    public List<Week> findAllByPlanId(int planId);
+    public List<Week> findAllByProgramId(int programId);
 
 }

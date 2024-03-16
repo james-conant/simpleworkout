@@ -66,4 +66,22 @@ public class UserServiceImpl implements UserService {
 		userRepo.deleteById(userId);
 	}
 
+	@Override
+	public User findByAuthId(String authId) {
+
+		Optional<User> result = userRepo.findByAuthId(authId);
+
+		User theEmployee = null;
+
+		if (result.isPresent()) {
+			theEmployee = result.get();
+		} else {
+			// we didn't find the employee
+			throw new RuntimeException("Did not find employee id - " + authId);
+		}
+
+		return theEmployee;
+
+	}
+
 }

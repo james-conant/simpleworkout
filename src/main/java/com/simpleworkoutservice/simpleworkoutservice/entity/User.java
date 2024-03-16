@@ -53,9 +53,9 @@ public class User extends AuditableEntity {
     public User() {
     }
 
-    public User(int id, String authId, String username, String email, boolean emailVerified,
+    public User(int id, String authId, String username, String email, Boolean emailVerified,
             String familyName, String givenName, String lastPasswordReset,
-            String name, String phoneNumber, boolean phoneVerified,
+            String name, String phoneNumber, Boolean phoneVerified,
             String picture, Date createdAt) {
         this.id = id;
         this.authId = authId;
@@ -87,11 +87,15 @@ public class User extends AuditableEntity {
         this.email = email;
     }
 
-    public boolean isEmailVerified() {
+    public Boolean isEmailVerified() {
         return emailVerified;
     }
 
-    public void setEmailVerified(boolean emailVerified) {
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
         this.emailVerified = emailVerified;
     }
 
@@ -135,11 +139,11 @@ public class User extends AuditableEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isPhoneVerified() {
+    public Boolean isPhoneVerified() {
         return phoneVerified;
     }
 
-    public void setPhoneVerified(boolean phoneVerified) {
+    public void setPhoneVerified(Boolean phoneVerified) {
         this.phoneVerified = phoneVerified;
     }
 

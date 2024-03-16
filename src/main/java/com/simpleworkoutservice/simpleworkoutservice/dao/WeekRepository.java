@@ -8,6 +8,6 @@ public interface WeekRepository extends JpaRepository<Week, Integer> {
 
     List<Week> findAllByUserId(int id);
 
-    List<Week> findAllByPlanId(int planId);
+    List<Week> findAllByProgramId(int programId);
 
 }

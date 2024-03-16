@@ -1,13 +1,12 @@
 package com.simpleworkoutservice.simpleworkoutservice.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.User;
 import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService.ExerciseService;
 import com.simpleworkoutservice.simpleworkoutservice.service.UserService.UserService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 
 import java.util.List;
 
@@ -26,6 +25,15 @@ public class UserController {
 
     }
 
+    public String getSubFromToken(String token, String secretKey) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey.getBytes())
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getSubject();
+    }
+
     @GetMapping("/users")
     public List<User> findAll() {
         return userService.findAll();
@@ -38,6 +46,18 @@ public class UserController {
 
         if (user == null) {
             throw new RuntimeException("User id not found - " + id);
+        }
+
+        return user;
+    }
+
+    @GetMapping("/users/auth0/{authId}")
+    public User getUserByAuth0Id(
+            @PathVariable("authId") String authId) {
+        User user = userService.findByAuthId(authId);
+
+        if (user == null) {
+            throw new RuntimeException("User with auth0Id not found - " + authId);
         }
 
         return user;

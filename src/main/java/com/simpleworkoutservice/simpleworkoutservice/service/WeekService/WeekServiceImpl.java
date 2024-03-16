@@ -57,8 +57,8 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public List<Week> findAllByPlanId(int planId) {
-        return weekRepo.findAllByPlanId(planId);
+    public List<Week> findAllByProgramId(int programId) {
+        return weekRepo.findAllByProgramId(programId);
     }
 
 }

@@ -10,8 +10,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "plans")
-public class Plan extends AuditableEntity {
+@Table(name = "programs")
+public class Program extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +21,21 @@ public class Plan extends AuditableEntity {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "current")
+    private Boolean current;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    public Plan() {
+    public Program() {
     }
 
-    public Plan(int id, User user, String name) {
+    public Program(int id, User user, String name, Boolean current) {
         this.id = id;
         this.user = user;
         this.name = name;
+        this.current = current;
     }
 
     public int getId() {
@@ -50,6 +54,14 @@ public class Plan extends AuditableEntity {
         this.name = name;
     }
 
+    public Boolean getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Boolean current) {
+        this.current = current;
+    }
+
     public User getUser() {
         return user;
     }
@@ -64,6 +76,7 @@ public class Plan extends AuditableEntity {
                 "id=" + id +
                 ", user=" + user +
                 ", name='" + name + '\'' +
+                ", current=" + current +
                 ", createdAt=" + getCreatedAt() +
                 '}';
     }
