@@ -49,10 +49,10 @@ public class ExerciseServiceImpl implements ExerciseService {
         exerciseRepo.deleteById(exerciseId);
     }
 
-    @Override
-    public List<Exercise> findAllByWorkoutId(int id) {
-        return exerciseRepo.findAllByWorkoutId(id);
+    // @Override
+    // public List<Exercise> findAllByWorkoutId(int id) {
+    //     return exerciseRepo.findAllByWorkoutId(id);
 
-    }
+    // }
 
 }

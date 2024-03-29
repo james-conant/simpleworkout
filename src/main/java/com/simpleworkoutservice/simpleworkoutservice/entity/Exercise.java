@@ -1,12 +1,16 @@
 package com.simpleworkoutservice.simpleworkoutservice.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,9 +22,11 @@ public class Exercise {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "workout_id", referencedColumnName = "id")
-    private Workout workout;
+    private int user_id;
+
+    @JsonBackReference
+    @ManyToMany(mappedBy = "exercises")
+    private Set<Workout> workouts = new HashSet<>();
 
     @Column(name = "name")
     private String name;
@@ -28,9 +34,10 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(int id, Workout workout, String name) {
+    public Exercise(int id, int user_id, Set<Workout> workouts, String name) {
         this.id = id;
-        this.workout = workout;
+        this.user_id = user_id;
+        this.workouts = workouts;
         this.name = name;
     }
 
@@ -42,12 +49,20 @@ public class Exercise {
         this.id = id;
     }
 
-    public Workout getWorkout() {
-        return this.workout;
+    public int getUserId() {
+        return this.user_id;
     }
 
-    public void setWorkout(Workout workout) {
-        this.workout = workout;
+    public void setUserId(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public Set<Workout> getWorkouts() {
+        return this.workouts;
+    }
+
+    public void setWorkout(Set<Workout> workouts) {
+        this.workouts = workouts;
     }
 
     public String getName() {
@@ -62,7 +77,8 @@ public class Exercise {
     public String toString() {
         return "{" +
                 " id='" + getId() + "'" +
-                ", workout='" + getWorkout() + "'" +
+                " user_id='" + getUserId() + "'" +
+                ", workouts='" + getWorkouts() + "'" +
                 ", name='" + getName() + "'" +
                 "}";
     }

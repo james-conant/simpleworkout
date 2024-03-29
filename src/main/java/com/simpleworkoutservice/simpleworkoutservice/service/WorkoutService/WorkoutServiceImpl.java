@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.simpleworkoutservice.simpleworkoutservice.dao.WorkoutRepository;
+import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Workout;
 
 @Service
@@ -51,9 +52,9 @@ public class WorkoutServiceImpl implements WorkoutService {
         workoutRepo.deleteById(userId);
     }
 
-    @Override
-    public List<Workout> findAllByWeekId(int weekId) {
-        return workoutRepo.findAllByWeekId(weekId);
-    }
+    // @Override
+    // public List<Workout> findAllByWeekId(int weekId) {
+    // return workoutRepo.findAllByWeekId(weekId);
+    // }
 
 }

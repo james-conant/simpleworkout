@@ -6,7 +6,7 @@ import com.simpleworkoutservice.simpleworkoutservice.entity.Week;
 
 public interface WeekRepository extends JpaRepository<Week, Integer> {
 
-    List<Week> findAllByUserId(int id);
+    // List<Week> findAllByUserId(int id);
 
     List<Week> findAllByProgramId(int programId);
 

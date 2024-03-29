@@ -22,10 +22,6 @@ public class Week extends AuditableEntity {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "program_id", referencedColumnName = "id")
     private Program program;
 

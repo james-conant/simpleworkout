@@ -3,6 +3,7 @@ package com.simpleworkoutservice.simpleworkoutservice.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
+import com.simpleworkoutservice.simpleworkoutservice.entity.Workout;
 import com.simpleworkoutservice.simpleworkoutservice.service.ExerciseService.ExerciseService;
 
 import java.util.List;
@@ -20,16 +21,17 @@ public class ExercisesController {
 
     }
 
-    @GetMapping("/exercises/{id}")
-    public List<Exercise> getExercisesByWorkout(@PathVariable("id") int id, @RequestHeader("userId") int userId) {
+    // @GetMapping("/exercises/{id}")
+    // public List<Exercise> getExercisesByWorkout(@PathVariable("id") int id,
+    // @RequestHeader("userId") int userId) {
 
-        List<Exercise> exercises = exerciseService.findAllByWorkoutId(id);
+    // List<Exercise> exercises = exerciseService.findAllByWorkoutId(id);
 
-        if (exercises == null) {
-            throw new RuntimeException("excercise id not found - " + id);
-        }
+    // if (exercises == null) {
+    // throw new RuntimeException("excercise id not found - " + id);
+    // }
 
-        return exercises;
-    }
+    // return exercises;
+    // }
 
 }

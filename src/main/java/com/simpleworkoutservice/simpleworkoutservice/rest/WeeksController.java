@@ -19,16 +19,16 @@ public class WeeksController {
 
     }
 
-    @GetMapping("/weeks/program/{programId}")
-    public List<Week> getWeeksByProgramId(@PathVariable("programId") int programId) {
+    // @GetMapping("/weeks/program/{programId}")
+    // public List<Week> getWeeksByProgramId(@PathVariable("programId") int programId) {
 
-        List<Week> weeks = weekService.findAllByProgramId(programId);
+    //     List<Week> weeks = weekService.findAllByProgramId(programId);
 
-        if (weeks == null) {
-            throw new RuntimeException("Weeks not found with program id - " + programId);
-        }
+    //     if (weeks == null) {
+    //         throw new RuntimeException("Weeks not found with program id - " + programId);
+    //     }
 
-        return weeks;
-    }
+    //     return weeks;
+    // }
 
 }

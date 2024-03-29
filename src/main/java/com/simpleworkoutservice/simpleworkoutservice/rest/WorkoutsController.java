@@ -25,16 +25,16 @@ public class WorkoutsController {
 
     }
 
-    @GetMapping("/workouts/{weekId}")
-    public List<Workout> getWorkoutsByWeek(@PathVariable("weekId") int weekId) {
+    @GetMapping("/workouts/{workoutId}")
+    public Workout getWorkoutById(@PathVariable("workoutId") int workoutId) {
 
-        List<Workout> workouts = workoutService.findAllByWeekId(weekId);
+        Workout workout = workoutService.findById(workoutId);
 
-        if (workouts == null) {
-            throw new RuntimeException("excercises by week id not found - " + weekId);
+        if (workout == null) {
+            throw new RuntimeException("workout id not found - " + workout);
         }
 
-        return workouts;
+        return workout;
     }
 
 }

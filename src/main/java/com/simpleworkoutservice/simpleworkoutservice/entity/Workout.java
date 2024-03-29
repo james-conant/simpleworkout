@@ -1,11 +1,20 @@
 package com.simpleworkoutservice.simpleworkoutservice.entity;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -19,23 +28,25 @@ public class Workout extends AuditableEntity {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
 
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "week_id", referencedColumnName = "id")
-    private Week week;
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "exercises_workouts", joinColumns = @JoinColumn(name = "workout_id"), inverseJoinColumns = @JoinColumn(name = "exercise_id"))
+    private Set<Exercise> exercises = new HashSet<>();
 
     public Workout() {
     }
 
-    public Workout(int id, User user, String name) {
+    public Workout(int id, User user, String name, Set<Exercise> exercises) {
         this.id = id;
         this.user = user;
         this.name = name;
+        this.exercises = exercises;
     }
 
     public int getId() {
@@ -62,12 +73,12 @@ public class Workout extends AuditableEntity {
         this.name = name;
     }
 
-    public Week getWeek() {
-        return week;
+    public Set<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setWeek(Week week) {
-        this.week = week;
+    public void setExercises(Set<Exercise> exercises) {
+        this.exercises = exercises;
     }
 
     @Override
@@ -76,6 +87,7 @@ public class Workout extends AuditableEntity {
                 "id=" + id +
                 ", user=" + user +
                 ", name='" + name + '\'' +
+                ", exercises='" + exercises + '\'' +
                 ", createdAt=" + getCreatedAt() +
                 '}';
     }

@@ -56,9 +56,9 @@ public class WeekServiceImpl implements WeekService {
         weekRepo.deleteById(userId);
     }
 
-    @Override
-    public List<Week> findAllByProgramId(int programId) {
-        return weekRepo.findAllByProgramId(programId);
-    }
+    // @Override
+    // public List<Week> findAllByProgramId(int programId) {
+    //     return weekRepo.findAllByProgramId(programId);
+    // }
 
 }

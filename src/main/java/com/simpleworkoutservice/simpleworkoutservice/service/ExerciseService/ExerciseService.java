@@ -7,6 +7,6 @@ import com.simpleworkoutservice.simpleworkoutservice.service.BaseService;
 
 public interface ExerciseService extends BaseService<Exercise, Integer> {
 
-    List<Exercise> findAllByWorkoutId(int id);
+    // List<Exercise> findAllByWorkoutId(int id);
 
 }

@@ -7,6 +7,6 @@ import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
 
 public interface ExerciseRepository extends JpaRepository<Exercise, Integer> {
 
-    List<Exercise> findAllByWorkoutId(int id);
+    // List<Exercise> findAllByWorkoutId(int id);
 
 }
