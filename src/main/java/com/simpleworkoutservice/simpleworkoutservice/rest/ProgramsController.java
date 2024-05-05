@@ -2,13 +2,15 @@ package com.simpleworkoutservice.simpleworkoutservice.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.simpleworkoutservice.simpleworkoutservice.config.security.authentication.SecurityContext;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Program;
+import com.simpleworkoutservice.simpleworkoutservice.entity.User;
 import com.simpleworkoutservice.simpleworkoutservice.service.ProgramService.ProgramService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/userprograms")
 public class ProgramsController {
 
     private ProgramService programService;
@@ -19,16 +21,15 @@ public class ProgramsController {
 
     }
 
-    @GetMapping("/programs")
-    public List<Program> getPrograms(@RequestHeader("userId") int userId) {
+    @GetMapping("/user")
+    public List<Program> getPrograms() {
 
-        if (userId == 0) {
-            throw new RuntimeException("No user Id given: " + userId);
-        }
-        List<Program> programs = programService.findAllByUserId(userId);
+        User curentUser = SecurityContext.getCurrentUser();
+
+        List<Program> programs = programService.findAllByUserId(curentUser.getId());
 
         if (programs == null) {
-            throw new RuntimeException("No programs found with user id: " + userId);
+            throw new RuntimeException("No programs found with user id: " + curentUser.getId());
         }
 
         return programs;
