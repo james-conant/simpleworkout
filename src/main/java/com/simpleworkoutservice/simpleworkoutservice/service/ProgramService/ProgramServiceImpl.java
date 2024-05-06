@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.simpleworkoutservice.simpleworkoutservice.dao.ProgramRepository;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Program;
-import com.simpleworkoutservice.simpleworkoutservice.entity.Week;
 
 @Service
 public class ProgramServiceImpl implements ProgramService {
@@ -24,41 +23,34 @@ public class ProgramServiceImpl implements ProgramService {
     }
 
     @Override
-    public Program findById(int id) {
-
+    public Program findById(Long id) {
         Optional<Program> result = programRepo.findById(id);
 
         Program dbProgram = null;
-
         if (result.isPresent()) {
             dbProgram = result.get();
         } else {
-            // we didn't find the employee
             throw new RuntimeException("Did not find program id - " + id);
         }
 
         return dbProgram;
+
     }
 
     @Override
     public Program save(Program program) {
         return programRepo.save(program);
+
     }
 
     @Override
-    public void deleteById(int programId) {
-        programRepo.deleteById(programId);
+    public Program update(Long id, Program program) {
+        return programRepo.save(program);
     }
 
     @Override
-    public List<Program> findAllByUserId(int userId) {
-        return programRepo.findAllByUserId(userId);
-    }
-
-    @Override
-    public Program findCurrentProgram(int userId) {
-        return programRepo.findFirstByUserIdAndCurrentTrue(userId);
-
+    public void deleteById(Long id) {
+        programRepo.deleteById(id);
     }
 
 }

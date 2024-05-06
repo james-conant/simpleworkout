@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.simpleworkoutservice.simpleworkoutservice.dao.LiftSetRepository;
 import com.simpleworkoutservice.simpleworkoutservice.entity.LiftSet;
-import com.simpleworkoutservice.simpleworkoutservice.entity.User;
 import com.simpleworkoutservice.simpleworkoutservice.service.BaseService;
 
 @Service
@@ -27,32 +26,34 @@ public class LiftSetServiceImpl implements BaseService<LiftSet, Integer> {
     }
 
     @Override
-    public LiftSet findById(int id) {
-
+    public LiftSet findById(Long id) {
         Optional<LiftSet> result = liftSetRepo.findById(id);
 
-        LiftSet dbWorkout = null;
-
+        LiftSet dbLiftSet = null;
         if (result.isPresent()) {
-            dbWorkout = result.get();
+            dbLiftSet = result.get();
         } else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find employee id - " + id);
+            throw new RuntimeException("Did not find LiftSet id - " + id);
         }
 
-        return dbWorkout;
+        return dbLiftSet;
+
     }
 
     @Override
-    public LiftSet save(LiftSet user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public LiftSet save(LiftSet LiftSet) {
+        return liftSetRepo.save(LiftSet);
+
     }
 
     @Override
-    public void deleteById(int userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+    public LiftSet update(Long id, LiftSet LiftSet) {
+        return liftSetRepo.save(LiftSet);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        liftSetRepo.deleteById(id);
     }
 
 }

@@ -23,36 +23,34 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise findById(int id) {
-
+    public Exercise findById(Long id) {
         Optional<Exercise> result = exerciseRepo.findById(id);
 
         Exercise dbExercise = null;
-
         if (result.isPresent()) {
             dbExercise = result.get();
         } else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find exercise id - " + id);
+            throw new RuntimeException("Did not find Exercise id - " + id);
         }
 
         return dbExercise;
+
     }
 
     @Override
     public Exercise save(Exercise exercise) {
         return exerciseRepo.save(exercise);
+
     }
 
     @Override
-    public void deleteById(int exerciseId) {
-        exerciseRepo.deleteById(exerciseId);
+    public Exercise update(Long id, Exercise exercise) {
+        return exerciseRepo.save(exercise);
     }
 
-    // @Override
-    // public List<Exercise> findAllByWorkoutId(int id) {
-    //     return exerciseRepo.findAllByWorkoutId(id);
-
-    // }
+    @Override
+    public void deleteById(Long id) {
+        exerciseRepo.deleteById(id);
+    }
 
 }

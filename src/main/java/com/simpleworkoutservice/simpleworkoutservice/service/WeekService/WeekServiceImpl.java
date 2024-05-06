@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.simpleworkoutservice.simpleworkoutservice.dao.WeekRepository;
+import com.simpleworkoutservice.simpleworkoutservice.entity.LiftSet;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Week;
 
 // This probably doesnt work and not needed
@@ -25,40 +26,34 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public Week findById(int id) {
-
+    public Week findById(Long id) {
         Optional<Week> result = weekRepo.findById(id);
 
-        Week dbWorkout = null;
-
+        Week dbWeek = null;
         if (result.isPresent()) {
-            dbWorkout = result.get();
+            dbWeek = result.get();
         } else {
-            // we didn't find the week
-            throw new RuntimeException("Did not find week id - " + id);
+            throw new RuntimeException("Did not find Week id - " + id);
         }
 
-        return dbWorkout;
-    }
-
-    public List<Week> findAllByUserId(int id) {
-        return weekRepo.findAll();
+        return dbWeek;
 
     }
 
     @Override
-    public Week save(Week user) {
-        return weekRepo.save(user);
+    public Week save(Week Week) {
+        return weekRepo.save(Week);
+
     }
 
     @Override
-    public void deleteById(int userId) {
-        weekRepo.deleteById(userId);
+    public Week update(Long id, Week Week) {
+        return weekRepo.save(Week);
     }
 
-    // @Override
-    // public List<Week> findAllByProgramId(int programId) {
-    //     return weekRepo.findAllByProgramId(programId);
-    // }
+    @Override
+    public void deleteById(Long id) {
+        weekRepo.deleteById(id);
+    }
 
 }

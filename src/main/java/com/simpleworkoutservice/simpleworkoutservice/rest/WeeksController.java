@@ -8,7 +8,7 @@ import com.simpleworkoutservice.simpleworkoutservice.service.WeekService.WeekSer
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/week")
 public class WeeksController {
 
     private WeekService weekService;
@@ -19,16 +19,30 @@ public class WeeksController {
 
     }
 
-    // @GetMapping("/weeks/program/{programId}")
-    // public List<Week> getWeeksByProgramId(@PathVariable("programId") int programId) {
+    // Add check if userId matches. Eventually we need roles
+    @PostMapping
+    public Week createWeek(@RequestBody Week newWeek) {
+        return weekService.save(newWeek);
+    }
 
-    //     List<Week> weeks = weekService.findAllByProgramId(programId);
+    @GetMapping
+    public List<Week> getAllWeeks() {
+        return weekService.findAll();
+    }
 
-    //     if (weeks == null) {
-    //         throw new RuntimeException("Weeks not found with program id - " + programId);
-    //     }
+    @GetMapping("/{id}")
+    public Week getWeek(@PathVariable Long id) {
+        return weekService.findById(id);
+    }
 
-    //     return weeks;
-    // }
+    @PutMapping("/{id}")
+    public Week updateWeek(@PathVariable Long id, @RequestBody Week updatedWeek) {
+        return weekService.update(id, updatedWeek);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteWeek(@PathVariable Long id) {
+        weekService.deleteById(id);
+    }
 
 }

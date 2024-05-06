@@ -20,50 +20,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByUsername(String username) {
-		return userRepo.findByUsername(username);
-	}
-
-	@Override
 	public List<User> findAll() {
 		return userRepo.findAll();
 	}
 
 	@Override
-	public User findById(int id) {
-
+	public User findById(Long id) {
 		Optional<User> result = userRepo.findById(id);
 
-		User theEmployee = null;
-
+		User dbUser = null;
 		if (result.isPresent()) {
-			theEmployee = result.get();
+			dbUser = result.get();
 		} else {
-			// we didn't find the employee
-			throw new RuntimeException("Did not find employee id - " + id);
+			throw new RuntimeException("Did not find User id - " + id);
 		}
 
-		return theEmployee;
-	}
+		return dbUser;
 
-	@Override
-	public User save(User user) {
-		if (user.getAuthId() == null) {
-			throw new IllegalArgumentException("no authId from action");
-		}
-		Optional<User> existingUser = userRepo.findByAuthId(user.getAuthId());
-
-		if (existingUser.isPresent()) {
-			System.out.println("A user with the same authId already exists");
-			return null;
-		}
-
-		return userRepo.save(user);
-	}
-
-	@Override
-	public void deleteById(int userId) {
-		userRepo.deleteById(userId);
 	}
 
 	@Override
@@ -82,6 +55,27 @@ public class UserServiceImpl implements UserService {
 
 		return theEmployee;
 
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		return userRepo.findByUsername(username);
+	}
+
+	@Override
+	public User save(User User) {
+		return userRepo.save(User);
+
+	}
+
+	@Override
+	public User update(Long id, User User) {
+		return userRepo.save(User);
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		userRepo.deleteById(id);
 	}
 
 }

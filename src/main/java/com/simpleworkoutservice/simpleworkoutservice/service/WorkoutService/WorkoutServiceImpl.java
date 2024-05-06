@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.simpleworkoutservice.simpleworkoutservice.dao.WorkoutRepository;
-import com.simpleworkoutservice.simpleworkoutservice.entity.Exercise;
 import com.simpleworkoutservice.simpleworkoutservice.entity.Workout;
 
 @Service
@@ -26,35 +25,34 @@ public class WorkoutServiceImpl implements WorkoutService {
     }
 
     @Override
-    public Workout findById(int id) {
-
+    public Workout findById(Long id) {
         Optional<Workout> result = workoutRepo.findById(id);
 
         Workout dbWorkout = null;
-
         if (result.isPresent()) {
             dbWorkout = result.get();
         } else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find employee id - " + id);
+            throw new RuntimeException("Did not find Workout id - " + id);
         }
 
         return dbWorkout;
+
     }
 
     @Override
-    public Workout save(Workout user) {
-        return workoutRepo.save(user);
+    public Workout save(Workout Workout) {
+        return workoutRepo.save(Workout);
+
     }
 
     @Override
-    public void deleteById(int userId) {
-        workoutRepo.deleteById(userId);
+    public Workout update(Long id, Workout Workout) {
+        return workoutRepo.save(Workout);
     }
 
-    // @Override
-    // public List<Workout> findAllByWeekId(int weekId) {
-    // return workoutRepo.findAllByWeekId(weekId);
-    // }
+    @Override
+    public void deleteById(Long id) {
+        workoutRepo.deleteById(id);
+    }
 
 }

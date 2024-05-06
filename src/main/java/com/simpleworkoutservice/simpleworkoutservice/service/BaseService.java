@@ -6,10 +6,12 @@ public interface BaseService<T, ID> {
 
     public List<T> findAll();
 
-    public T findById(int id);
+    public T findById(Long id);
 
-    public T save(T user);
+    public T save(T object);
 
-    public void deleteById(int userId);
+    public T update(Long id, T object);
+
+    public void deleteById(Long id);
 
 }
